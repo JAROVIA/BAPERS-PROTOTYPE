@@ -11,10 +11,10 @@ public class JavaMySQLTest {
         // database connection info
         String url = "jdbc:mysql://localhost:3306/mydtabase";
         String username = "jaroviadb";
-        String password = "Jarovia123#@!";
+        String password = "";
+
         // wrap in try/catch incase of issues in I/O
         try{
-
             // establishing connection to db
             Connection connection = DriverManager.getConnection(
                     url, username, password);
@@ -24,12 +24,12 @@ public class JavaMySQLTest {
             String sql = "SELECT * FROM BookTable";
             ResultSet resultSet = statement.executeQuery(sql);
 
-                // add new row to database
+                // The next two lines add new row to database.
             // create a Statement from the connection
-            Statement stat = connection.createStatement();
+//            Statement stat = connection.createStatement();
 
             // insert the data
-            stat.executeUpdate("INSER/T/ INTO BookTable VALUES(22143, 'Freid', 'Beyond good and evil', 12)");
+//            stat.executeUpdate("INSERT INTO BookTable VALUES(22143, 'Freid', 'Beyond good and evil', 12)");
 
 
             while(resultSet.next()){
