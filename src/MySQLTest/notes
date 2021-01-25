@@ -1,0 +1,8 @@
+To actually use the code you need to download the MySQL jar and add it
+to the project. You also need to create a local SQL database using your
+command prompt or some other method (I think the intelliJ extension
+MAY allow you to do this but im not sure). The hardest part will be setting
+up the local database stuff (if you want to do it). Here are some links
+that helped me a lot:
+
+https://pastebin.com/7RcHL4c6
