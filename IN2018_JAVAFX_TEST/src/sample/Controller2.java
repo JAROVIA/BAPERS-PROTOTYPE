@@ -1,5 +1,6 @@
 package sample;
 
+import MySQLTest.JavaMySQLTest;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -8,7 +9,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
+
+import static MySQLTest.JavaMySQLTest.AddTableToList;
 
 public class Controller2 {
     //get the components in fxml
@@ -22,14 +26,15 @@ public class Controller2 {
     private TextField tableName;
 
     @FXML
-    protected void viewAll(){
+    protected void viewAll() throws SQLException {
         ArrayList<String[]> data = new ArrayList<>();
 
         //get all the db data as ArrayList<String[]>
+        //data is the variable for the information in the database
         //ArrayList for all rows and String[] for all columns
-        //
-        // TODO  - get table data here
-        //
+
+        String t5 = tableName.getText();
+        data = JavaMySQLTest.AddTableToList(t5);
 
         //apparently string builder is better than += concatenation
         StringBuilder str = new StringBuilder();

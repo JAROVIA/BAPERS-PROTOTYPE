@@ -1,5 +1,6 @@
 package sample;
 
+import MySQLTest.JavaMySQLTest;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -9,6 +10,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class Controller1 {
     //get all the components in the fxml
@@ -53,7 +55,7 @@ public class Controller1 {
         }
     }
 
-    @FXML protected void insert(){
+    @FXML protected void insert() throws SQLException {
         // number of text fields for some use
         String t5 = tableName.getText();
         String t1 = row1.getText();
@@ -62,9 +64,9 @@ public class Controller1 {
         String t4 = row4.getText();
 
         boolean success = false;
-        //
-        // TODO - insert to table here
-        //
+
+        // insertToDB() tuple to db
+        JavaMySQLTest.insertToDB(t5, Integer.parseInt(t1), t2, t3, Integer.parseInt(t4));
 
         // success = if insert was successful
         if(success){
