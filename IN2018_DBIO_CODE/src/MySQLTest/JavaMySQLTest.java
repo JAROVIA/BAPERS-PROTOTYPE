@@ -27,41 +27,59 @@ public class JavaMySQLTest {
     }
 
     public static void main(String[] args) throws SQLException {
+//        Basic example:
+//        Statement statement = connection.createStatement();
+//        String sql = "SELECT * FROM BookTable";
+//        ResultSet resultSet = statement.executeQuery(sql);
+
+
+
+
     }
 
 
 
-    public static void insertToDB(String tablename, int isbn, String author, String title, int price) throws SQLException {
-        // connect to database
-        // Done globally
+    // todo enable editing
+
+    public static void DeleteFromTable(String tablename, String columntitle, String filter) throws SQLException {
 
         // set up the stuff
         Statement statement = connection.createStatement();
-        String sql = "SELECT * FROM BookTable";
+        String sql = "DELETE FROM " + tablename + " WHERE " + columntitle + " = '" + filter + "';";
+        statement.executeUpdate(sql);
+
+    }
+
+    public static void FilterTable(String tablename, String sortcolumn, String sortcondition) throws SQLException {
+
+        String sql = "SELECT * FROM " + tablename + " WHERE " + sortcolumn + " LIKE \"" + sortcondition + "\";";
+        Statement statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery(sql);
 
-//        String sqlq = "INSERT INTO BookTable VALUES(" + isbn + ", '" + author + "', '" + title + "', " + price + ");";
-        String sqlq = "INSERT INTO " + tablename + " VALUES(" + isbn + ", '" + author + "', '" + title + "', " + price + ");";
+    }
 
+    public static void insertToDB(String tablename, int isbn, String author, String title, int price) throws SQLException {
+
+        String sql = "INSERT INTO " + tablename + " VALUES(" + isbn + ", '" + author + "', '" + title + "', " + price + ");";
         // run a query
-
         Statement stat = connection.createStatement();
-        stat.executeUpdate(sqlq);
+        stat.executeUpdate(sql);
 
-        while (resultSet.next()) {
-            int _ISBN = resultSet.getInt("ISBN");
-            String _author = resultSet.getString("author");
-            String _title = resultSet.getString("title");
-            int _price = resultSet.getInt("price");
-
-            System.out.println(
-                    "ISBN: " + _ISBN +
-                    " author: " + _author +
-                    " title: " + _title +
-                    " price: " + _price
-            );
-
-        }
+        // prints updated ver to terminal
+//        while (resultSet.next()) {
+//            int _ISBN = resultSet.getInt("ISBN");
+//            String _author = resultSet.getString("author");
+//            String _title = resultSet.getString("title");
+//            int _price = resultSet.getInt("price");
+//
+//            System.out.println(
+//                    "ISBN: " + _ISBN +
+//                    " author: " + _author +
+//                    " title: " + _title +
+//                    " price: " + _price
+//            );
+//
+//        }
 
     }
 
@@ -72,6 +90,7 @@ public class JavaMySQLTest {
 
         ArrayList<String[]> arrayList = new ArrayList<String[]>();
         String tuple;
+        // adding changes to an array list
         while (resultSet.next()){
 
             int _ISBN = resultSet.getInt("ISBN");
